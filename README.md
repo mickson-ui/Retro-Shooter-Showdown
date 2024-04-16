@@ -21,12 +21,14 @@ Create player character scene with movement controls.
 Implement shooting mechanic with basic projectile spawning.
 Design user interface elements such as menus, HUD, and game over screen.
 Duration: 1 week.
+
 Sprint 2: Enemy Behavior and Collision Detection
 Tasks:
 Design enemy character scene with different types of enemies.
 Implement enemy spawning and movement patterns.
 Add collision detection between player projectiles and enemies.
 Duration: 1 week.
+
 Sprint 3: Visuals, Sound, and Polish
 Tasks:
 Create pixel art graphics for player character, enemies, and environments.
@@ -34,6 +36,7 @@ Design dynamic backgrounds and level elements.
 Compose chiptune soundtrack and add sound effects for actions and events.
 Polish gameplay mechanics, visuals, and sound effects for a cohesive experience.
 Duration: 1 week.
+
 Sprint 4: Testing and Deployment
 Tasks:
 Implement scoring system and leaderboard functionality.

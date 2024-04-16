@@ -19,7 +19,7 @@ Tasks:
 3. Implement shooting mechanic with basic projectile spawning.
 4. Design user interface elements such as menus, HUD, and game over screen.
    
-# Duration: 1 week.
+# Duration: Week 1.
 
 # Sprint 2: Enemy Behavior and Collision Detection
 
@@ -28,7 +28,7 @@ Tasks:
 2. Implement enemy spawning and movement patterns.
 3. Add collision detection between player projectiles and enemies.
    
-# Duration: 1 week.
+# Duration: Week 2.
 
 # Sprint 3: Visuals, Sound, and Polish
 Tasks:
@@ -37,7 +37,7 @@ Tasks:
 3. Compose chiptune soundtrack and add sound effects for actions and events.
 4. Polish gameplay mechanics, visuals, and sound effects for a cohesive experience.
    
-# Duration: 1 week.
+# Duration: Week 3.
 
 # Sprint 4: Testing and Deployment
 Tasks:
@@ -45,6 +45,6 @@ Tasks:
 2. Conduct thorough testing to identify and address any bugs or issues.
 3. Prepare final build for release on selected platforms (PC, mobile, etc.).
    
-# Duration: 1 week.
+# Duration: Week 4.
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bc6ps1qg1skf1"]
+[gd_scene load_steps=32 format=3 uid="uid://bc6ps1qg1skf1"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_wqxs5"]
 [ext_resource type="Texture2D" uid="uid://cbx0yt77fai54" path="res://Player/climb/player-climb-1.png" id="2_q8ydk"]
@@ -245,15 +245,35 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
+[sub_resource type="Animation" id="Animation_qak7n"]
+resource_name = "Hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j07uf"]
 _data = {
 "Crouch": SubResource("Animation_u4gqc"),
 "Fall": SubResource("Animation_a5isk"),
+"Hurt": SubResource("Animation_qak7n"),
 "Idle": SubResource("Animation_6hb8y"),
 "Jump": SubResource("Animation_dr1yi"),
 "RESET": SubResource("Animation_fiegr"),
 "Run": SubResource("Animation_l3lvp")
 }
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vjtid"]
+radius = 27.0
+height = 66.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_wqxs5")
@@ -266,9 +286,8 @@ shape = SubResource("CapsuleShape2D_nltn0")
 position = Vector2(9.53674e-07, 2.38419e-07)
 scale = Vector2(2.49718, 2.73864)
 sprite_frames = SubResource("SpriteFrames_lcwbu")
-animation = &"Idle"
+animation = &"Hurt"
 frame = 1
-metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0
@@ -282,3 +301,14 @@ libraries = {
 autoplay = "Idle"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(28, 14)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 8)
+shape = SubResource("CapsuleShape2D_vjtid")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

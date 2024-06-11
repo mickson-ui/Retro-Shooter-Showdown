@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0cxhxixvy8km"]
+
+[ext_resource type="Texture2D" uid="uid://ced1n7q6ggg6d" path="res://_0001_Layer-2.png" id="2_fb262"]
+
+[sub_resource type="GDScript" id="GDScript_25f53"]
+script/source = "extends CharacterBody2D
+
+var speed = 500
+
+func _ready():
+	pass
+	
+func start(pos):
+	position = pos
+
+func _physics_process(delta):
+	position.x -= speed * delta
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	queue_free()
+	
+
+func _on_player_collision_body_entered(body):
+	if body.name == \"Player\":
+		Game.playerHP -= 3
+
+
+func _on_bullet_death_body_entered(body):
+	if body.name == \"Player\":
+		killBullet()
+	
+func killBullet():
+	Game.Gold -= 5
+	Utils.saveGame()
+	self.queue_free()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bytxh"]
+size = Vector2(36, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q5m1e"]
+size = Vector2(36, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7x1ug"]
+size = Vector2(36, 13)
+
+[node name="Bullet" type="CharacterBody2D"]
+script = SubResource("GDScript_25f53")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_fb262")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_bytxh")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(4.76837e-07, 0)
+scale = Vector2(1.8, 1)
+
+[node name="BulletDeath" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletDeath"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_q5m1e")
+debug_color = Color(0.0117647, 0.196078, 0.0901961, 0.419608)
+
+[node name="PlayerCollision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCollision"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_7x1ug")
+debug_color = Color(0.623529, 0.529412, 0.145098, 0.419608)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="BulletDeath" to="." method="_on_bullet_death_body_entered"]
+[connection signal="body_entered" from="PlayerCollision" to="." method="_on_player_collision_body_entered"]

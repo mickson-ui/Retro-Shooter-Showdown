@@ -158,12 +158,12 @@ shape = SubResource("RectangleShape2D_ttaes")
 position = Vector2(1, -20)
 scale = Vector2(1.98328, 1.90625)
 sprite_frames = SubResource("SpriteFrames_3gth3")
-animation = &"Idle"
+animation = &"Death"
 
 [node name="PlayerDetection" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+visible = false
 shape = SubResource("CircleShape2D_fcv2v")
 
 [node name="PlayerDeath" type="Area2D" parent="."]

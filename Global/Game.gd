@@ -1,4 +1,4 @@
 extends Node
 
-var playerHP = 10
+var playerHP = 50
 var Gold = 0
